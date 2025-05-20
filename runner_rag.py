@@ -1,19 +1,17 @@
 import os
 import json
-import google.generativeai as genai
+import openai
 from datetime import datetime
 from dotenv import load_dotenv
 
 # Load environment variables from .env file (if present)
 load_dotenv()
 
-# Set up Gemini client
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-if not GEMINI_API_KEY:
-    print("⚠️ GEMINI_API_KEY not found. Please set it as an environment variable or in a .env file.")
+# Set up OpenAI client
+openai.api_key = os.getenv("OPENAI_API_KEY")
+if not openai.api_key:
+    print("⚠️ OPENAI_API_KEY not found. Please set it as an environment variable or in a .env file.")
     print("You can continue with the workshop, but the LLM queries will not work.")
-else:
-    genai.configure(api_key=GEMINI_API_KEY)
 
 # 1. Store runner and animal data in dictionaries
 runners_data = {
@@ -158,8 +156,8 @@ def retrieve_context(query):
 # 4. Function to query the LLM with the retrieved context
 def query_llm(query):
     """Query the LLM with the retrieved context"""
-    if not GEMINI_API_KEY:
-        return "⚠️ Gemini API key not set. Please set GEMINI_API_KEY environment variable."
+    if not openai.api_key:
+        return "⚠️ OpenAI API key not set. Please set OPENAI_API_KEY environment variable."
     
     # Retrieve relevant context
     context = retrieve_context(query)
@@ -184,18 +182,17 @@ def query_llm(query):
     ANSWER:
     """
     
-    # Call the API - using Gemini
+    # Call the API - using ChatGPT (gpt-3.5-turbo)
     try:
-        model = genai.GenerativeModel('gemini-2.5-flash-preview-04-17') # Using exact user-specified model
-        # For Gemini, the prompt structure is simpler. We can combine system and user message.
-        # However, to maintain closer parity with the original structure and allow for potential future multi-turn,
-        # we can simulate it or use the newer API features if available.
-        # For now, a direct prompt is fine for this model.
-        
-        # The prompt already includes a system-like instruction: "You are a sports biomechanics expert..."
-        # So, we can pass the entire prompt string.
-        response = model.generate_content(prompt)
-        return response.text
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "You are a helpful sports biomechanics expert."},
+                {"role": "user", "content": prompt}
+            ],
+            max_tokens=500
+        )
+        return response.choices[0].message.content
     except Exception as e:
         return f"Error querying LLM: {str(e)}"
 

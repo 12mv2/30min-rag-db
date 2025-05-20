@@ -1,11 +1,4 @@
-## 📝 License
-
-MIT
-
-## 🙏 Acknowledgements
-
-- Google for the Gemini API
-- All workshop participants for their interest in RAG systems!# Runner & Animal Gait RAG Workshop
+# Runner & Animal Gait RAG Workshop
 
 A simple demonstration of Retrieval-Augmented Generation (RAG) using runner and animal gait metrics.
 
@@ -23,62 +16,30 @@ Perfect for a 30-minute introduction to RAG systems!
 
 1. Clone this repository:
    ```
-   git clone https://github.com/your-username/30min-rag-db.git
-   cd 30min-rag-db
+   git clone https://github.com/your-username/runner-gait-rag.git
+   cd runner-gait-rag
    ```
 
 2. Create a virtual environment and install dependencies:
-   ```bash
-   # Create a virtual environment
+   ```
    python -m venv venv
-   
-   # Activate the virtual environment
-   # On Windows:
-   venv\Scripts\activate
-   # On macOS/Linux:
-   source venv/bin/activate
-   
-   # Install the required packages
-   pip install google-generativeai python-dotenv==1.1.0
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   pip install -r requirements.txt
    ```
 
-3. Set up your Gemini API key in a .env file:
-   ```bash
-   # Create a .env file in the project root directory
-   # On Windows:
-   echo GEMINI_API_KEY=your-api-key-here > .env
-   
-   # On macOS/Linux:
-   echo "GEMINI_API_KEY=your-api-key-here" > .env
+3. Set up your OpenAI API key:
    ```
+   # On Linux/Mac
+   export OPENAI_API_KEY="your-api-key"
    
-   > **Note:** Replace `your-api-key-here` with your actual Gemini API key. You can get an API key from [Google AI Studio](https://aistudio.google.com/app/apikey) or the [Google Cloud Console](https://console.cloud.google.com/).
+   # On Windows
+   set OPENAI_API_KEY=your-api-key
+   ```
 
 4. Run the example:
    ```
    python runner_rag.py
    ```
-
-## 📝 About .env Files
-
-This project uses a `.env` file to securely store your API keys and other sensitive information:
-
-- **What is a .env file?** It's a simple text file that stores key-value pairs in the format `KEY=value`
-- **Why use it?** It keeps sensitive data (like API keys) out of your code and version control
-- **How does it work?** The `python-dotenv` package loads these values into environment variables
-
-### .env File Example
-```
-GEMINI_API_KEY=your-gemini-api-key-here
-# You can add other environment variables as needed
-# ANOTHER_VARIABLE=another_value
-```
-
-### Important Security Notes
-- **NEVER commit your .env file to version control**
-- Add `.env` to your `.gitignore` file
-- Each developer should create their own local `.env` file
-- For the workshop, everyone will need their own Gemini API key
 
 ## 🤔 What is RAG?
 
@@ -106,24 +67,6 @@ For each entity, we track:
 
 See the `workshop/exercises.md` file for exercises to try during the workshop.
 
-## ❓ Troubleshooting
-
-### Common Issues
-
-1. **API Key Issues**
-   - Error message about invalid API key: Double-check your Gemini API key in the .env file
-   - "GEMINI_API_KEY not found": Ensure your .env file is in the correct location (project root) and the variable is named GEMINI_API_KEY.
-
-2. **Python Environment Problems**
-   - "Module not found": Make sure you've activated your virtual environment and installed `google-generativeai`.
-   - Version conflicts: Ensure you have a compatible version of `google-generativeai` installed.
-
-3. **Running the Code**
-   - Windows path issues: Use `\\` or raw strings (r"path\to\file") for file paths
-   - Permission errors: Check that you have write access to the project directory
-
-If you encounter other issues during the workshop, please raise your hand for assistance.
-
 ## 🔧 Extending the Project
 
 Here are some ways to extend this simple RAG implementation:
@@ -133,3 +76,12 @@ Here are some ways to extend this simple RAG implementation:
 3. Add your own running metrics to compare with professionals
 4. Expand the dataset with more runners or animals
 5. Add visualization of gait metrics
+
+## 📝 License
+
+MIT
+
+## 🙏 Acknowledgements
+
+- OpenAI for the GPT API
+- All workshop participants for their interest in RAG systems!
