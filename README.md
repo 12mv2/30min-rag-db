@@ -4,7 +4,7 @@ MIT
 
 ## 🙏 Acknowledgements
 
-- OpenAI for the GPT API
+- Google for the Gemini API
 - All workshop participants for their interest in RAG systems!# Runner & Animal Gait RAG Workshop
 
 A simple demonstration of Retrieval-Augmented Generation (RAG) using runner and animal gait metrics.
@@ -38,21 +38,21 @@ Perfect for a 30-minute introduction to RAG systems!
    # On macOS/Linux:
    source venv/bin/activate
    
-   # Install the specific version
-   pip install openai==0.28.1 python-dotenv==1.1.0
+   # Install the required packages
+   pip install google-generativeai python-dotenv==1.1.0
    ```
 
-3. Set up your OpenAI API key in a .env file:
+3. Set up your Gemini API key in a .env file:
    ```bash
    # Create a .env file in the project root directory
    # On Windows:
-   echo OPENAI_API_KEY=your-api-key-here > .env
+   echo GEMINI_API_KEY=your-api-key-here > .env
    
    # On macOS/Linux:
-   echo "OPENAI_API_KEY=your-api-key-here" > .env
+   echo "GEMINI_API_KEY=your-api-key-here" > .env
    ```
    
-   > **Note:** Replace `your-api-key-here` with your actual OpenAI API key. You can get an API key from [OpenAI's website](https://platform.openai.com/api-keys).
+   > **Note:** Replace `your-api-key-here` with your actual Gemini API key. You can get an API key from [Google AI Studio](https://aistudio.google.com/app/apikey) or the [Google Cloud Console](https://console.cloud.google.com/).
 
 4. Run the example:
    ```
@@ -69,7 +69,7 @@ This project uses a `.env` file to securely store your API keys and other sensit
 
 ### .env File Example
 ```
-OPENAI_API_KEY=sk-abcdef123456789
+GEMINI_API_KEY=your-gemini-api-key-here
 # You can add other environment variables as needed
 # ANOTHER_VARIABLE=another_value
 ```
@@ -78,7 +78,7 @@ OPENAI_API_KEY=sk-abcdef123456789
 - **NEVER commit your .env file to version control**
 - Add `.env` to your `.gitignore` file
 - Each developer should create their own local `.env` file
-- For the workshop, everyone will need their own OpenAI API key
+- For the workshop, everyone will need their own Gemini API key
 
 ## 🤔 What is RAG?
 
@@ -111,12 +111,12 @@ See the `workshop/exercises.md` file for exercises to try during the workshop.
 ### Common Issues
 
 1. **API Key Issues**
-   - Error message about invalid API key: Double-check your API key in the .env file
-   - "OpenAI API key not set": Ensure your .env file is in the correct location (project root)
+   - Error message about invalid API key: Double-check your Gemini API key in the .env file
+   - "GEMINI_API_KEY not found": Ensure your .env file is in the correct location (project root) and the variable is named GEMINI_API_KEY.
 
 2. **Python Environment Problems**
-   - "Module not found": Make sure you've activated your virtual environment
-   - Version conflicts: Ensure you're using exactly `openai==0.28.1`
+   - "Module not found": Make sure you've activated your virtual environment and installed `google-generativeai`.
+   - Version conflicts: Ensure you have a compatible version of `google-generativeai` installed.
 
 3. **Running the Code**
    - Windows path issues: Use `\\` or raw strings (r"path\to\file") for file paths
